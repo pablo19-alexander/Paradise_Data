@@ -1,0 +1,51 @@
+version: '3.5'
+services:
+  paradisedata:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      image: 'paradisedata:latest'
+      container_name: paradisedata
+      restart: always
+
+      links:
+         - mysql
+      networks:
+          - proxy
+          - default
+  mysql:
+      image: mariadb:10.3
+      restart: always
+      ports:
+          - "3306:3306"
+      volumes:
+          - ./mysql:/var/lib/mysql
+      environment:
+          - MYSQL_DATABASE=login_register_db
+          - MYSQL_USER=root
+          - MYSQL_PASSWORD=root
+          - MYSQL_ROOT_PASSWORD=root
+      networks:
+          - proxy
+          - default
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      expose:
+          - 80
+      links:
+          - mysql:mysql
+      environment:
+          - PMA_HOST=mysql
+          - PMA_ARBITRARY=1
+          - MYSQL_DATABASE=login_register_db
+          - MYSQL_USER=root
+          - MYSQL_PASSWORD=root
+          - MYSQL_ROOT_PASSWORD=root
+      networks:
+          - proxy
+          - default
+networks:
+    proxy:
+        name: proxy
+        external: true
+

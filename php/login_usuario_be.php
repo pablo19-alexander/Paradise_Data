@@ -3,12 +3,12 @@
     include './conexion_be.php';
 
     $correo = $_POST['correo'];
-    $contraseña = $_POST['contraseña'];
-    $contraseña = hash('sha512', $contraseña);
+    $password = $_POST['password'];
+    $password = hash('sha512', $password);
 
 
     $validar_login = mysqli_query($conexion, "SELECT * FROM usuarios WHERE correo='$correo'
-    and contraseña='$contraseña'"); 
+    and password='$password'"); 
 
     if(mysqli_num_rows($validar_login) > 0){
         $_SESSION['usuario'] = $correo;

@@ -5,13 +5,13 @@
     $nombre_completo = $_POST['nombre_completo'];
     $correo = $_POST['correo'];
     $usuario = $_POST['usuario'];
-    $contraseña = $_POST['contraseña'];
+    $password = $_POST['password'];
     
-    //encriptamiento de la contraseña
-    $contraseña = hash('sha512', $contraseña);
+    //encriptamiento de la password
+    $password = hash('sha512', $password);
 
-    $query = "INSERT INTO usuarios(nombre_completo, correo, usuario, contraseña) 
-              VALUES ('$nombre_completo', '$correo', '$usuario', '$contraseña')";
+    $query = "INSERT INTO usuarios(nombre_completo, correo, usuario, password) 
+              VALUES ('$nombre_completo', '$correo', '$usuario', '$password')";
 
     //verificar que el correo no se repita en la base de datos
     $verificar_correo = mysqli_query($conexion, "SELECT * FROM usuarios WHERE correo = '$correo'");

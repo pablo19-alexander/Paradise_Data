@@ -5,7 +5,7 @@
     if(isset($_SESSION['usuario'])){
         header("location: ./index.php");
     }
-
+    
 ?>
 
 <!DOCTYPE html>
@@ -48,8 +48,8 @@
                 <!-- login -->
                 <form action="./php/login_usuario_be.php" method="POST" class="formulario_login">
                     <h2>Iniciar Sesion</h2>
-                    <input type="text" placeholder="Correo Electronico" name="correo">
-                    <input type="password" placeholder="contraseña" name="contraseña">
+                    <input type="email" placeholder="Correo Electronico" name="correo">
+                    <input type="password" placeholder="contraseña" name="password">
                     <button>Entrar</button>
                 </form>
 
@@ -58,9 +58,9 @@
                 <form action="./php/registro_usuario_be.php" method="POST" class="formulario_register">
                     <h2>Registrarse</h2>
                     <input type="text" placeholder="Nombre Completo" name="nombre_completo">
-                    <input type="text" placeholder="Correo Electronico" name="correo">
+                    <input type="email" placeholder="Correo Electronico" name="correo">
                     <input type="text" placeholder="Usuario" name="usuario">
-                    <input type="password" placeholder="contraseña" name="contraseña">
+                    <input type="password" placeholder="contraseña" name="password">
                     <button>Registrarse</button>
                 </form>
             </div>
